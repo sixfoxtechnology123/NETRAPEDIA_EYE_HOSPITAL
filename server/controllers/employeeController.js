@@ -3,23 +3,24 @@ const Activity = require("../models/Activity");
 const Department = require("../models/Department");
 const Designation = require("../models/Designation");
 
-// Auto-generate EmployeeID: EMP1, EMP2, EMP3...
+// Auto-generate EmployeeID: NEH0001, NEH0002, NEH0003...
 const generateEmployeeID = async () => {
   try {
     const lastEmp = await Employee.findOne().sort({ createdAt: -1 }).lean();
     let next = 1;
 
     if (lastEmp?.employeeID) {
-      const match = lastEmp.employeeID.match(/EMP(\d+)/);
+      const match = lastEmp.employeeID.match(/NEH(\d+)/);
       if (match) next = parseInt(match[1], 10) + 1;
     }
 
-    return `EMP${next}`;
+    return `NEH${String(next).padStart(4, "0")}`;
   } catch (err) {
     console.error("Error generating employeeID:", err);
-    return "EMP1";
+    return "NEH0001";
   }
 };
+
 
 // GET /api/employees/next-id
 exports.getNextEmployeeID = async (req, res) => {
