@@ -1494,12 +1494,14 @@ leaveAuthority: getEmployeeName(leaveAuthority),
                     ]}
                 />
 
-                <Select
-                  label="Branch (*)"
-                  value={branch}
-                  onChange={setBranch}
-                  options={["MAIN BRANCH", "SUB BRANCH"]}
-                />
+              <Input
+                type="text"
+                label="Branch (*)"
+                value={branch}
+                onChange={setBranch}
+                placeholder="Enter branch name"
+              />
+
 
                 <Input label="IFSC Code (*)" value={ifscCode} onChange={setIfscCode} />
                 <Input label="Account No. (*)" value={accountNo} onChange={setAccountNo} />
